@@ -1,28 +1,21 @@
 import React, {createContext, Dispatch, useReducer} from "react";
-import {itemReducer} from "./Reducers";
-import {InitialStateType, ItemActions} from "./Types";
+import {itemReducer} from "./Reducer";
+import {ItemActions, ItemsType} from "./Types";
 
-const initialState: InitialStateType = {
+const initialState: ItemsType = {
     items: []
 };
 
 const AppContext = createContext<{
-    state: InitialStateType;
+    state: ItemsType;
     dispatch: Dispatch<ItemActions>;
 }>({
     state: initialState,
     dispatch: () => null
 });
 
-const mainReducer = (
-    {items}: InitialStateType,
-    action: ItemActions
-) => ({
-    items: itemReducer(items, action)
-});
-
 const AppProvider: React.FC = ({children}) => {
-    const [state, dispatch] = useReducer(mainReducer, initialState);
+    const [state, dispatch] = useReducer(itemReducer, initialState);
 
     return (
         <AppContext.Provider value={{state, dispatch}}>

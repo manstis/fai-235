@@ -2,7 +2,7 @@ import React from "react";
 import {AppContext} from "./ContextProvider";
 import {Actions} from "./Types";
 
-const List = () => {
+const ItemList = () => {
     const [form, setForm] = React.useState({
         value: ""
     });
@@ -56,4 +56,4 @@ const List = () => {
     );
 };
 
-export default List;
+export default ItemList;

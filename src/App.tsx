@@ -1,12 +1,14 @@
 import * as React from "react";
 import {AppProvider} from "./ContextProvider";
-import List from "./List";
+import ItemList from "./ItemList";
+import HistoryButtons from "./HistoryButtons";
 import "./styles.css";
 
 export default function App() {
     return (
         <AppProvider>
-            <List/>
+            <HistoryButtons/>
+            <ItemList/>
         </AppProvider>
     );
 }

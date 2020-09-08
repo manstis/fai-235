@@ -21,6 +21,10 @@ export type ItemType = {
     value: string;
 };
 
+export type ItemsType = {
+    items: ItemType[];
+};
+
 export type ItemPayload = {
     [Actions.Create]: {
         id: number;
@@ -35,6 +39,3 @@ export type ItemPayload = {
 
 export type ItemActions = ActionMap<ItemPayload>[keyof ActionMap<ItemPayload>];
 
-export type InitialStateType = {
-    items: ItemType[];
-};
