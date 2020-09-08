@@ -1,13 +1,16 @@
 import * as React from "react";
 import {AppProvider} from "./ContextProvider";
 import ItemList from "./ItemList";
-import HistoryButtons from "./HistoryButtons";
+import {StateButtons} from "./HistoryProvider";
 import "./styles.css";
+import {enableAllPlugins} from "immer";
+
+enableAllPlugins();
 
 export default function App() {
     return (
         <AppProvider>
-            <HistoryButtons/>
+            <StateButtons/>
             <ItemList/>
         </AppProvider>
     );
