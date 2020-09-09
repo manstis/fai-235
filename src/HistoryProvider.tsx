@@ -1,4 +1,4 @@
-import React, {Dispatch} from "react";
+import React from "react";
 import {AppContext} from "./ContextProvider";
 import {Actions, ItemsType} from "./Types";
 import {applyPatches, produce} from "immer";
@@ -39,7 +39,7 @@ const history: History = {
     index: 0
 }
 
-const mutate = (state: ItemsType, dispatch: Dispatch<WritableDraft<ItemsType>>): ItemsType => {
+const mutate = (state: ItemsType, recipe: (draft: WritableDraft<ItemsType>) => void) => {
     if (history.index < history.changes.length) {
         history.changes = history.changes.slice(0, history.index);
         history.reverse = history.reverse.slice(0, history.index);
@@ -49,7 +49,7 @@ const mutate = (state: ItemsType, dispatch: Dispatch<WritableDraft<ItemsType>>):
 
     newState = produce(
         state,
-        draft => dispatch(draft),
+        recipe,
         (patches, inversePatches) => {
             history.changes.push(...patches)
             history.reverse.push(...inversePatches)
